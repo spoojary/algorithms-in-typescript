@@ -26,11 +26,11 @@ export function convertInfixToPostfix(expression: string): string[] {
     const postfixStack: string[] = [];
 
     const operatorPriority = ['*', '/', '+', '-'];
-    const tokenzer = tokenizeExpression(expression);
-    while(const tokenzer.next().value) {
 
-    }
-    
+    //const tokenzer = tokenizeExpression(expression);
+    // while(tokenzer.next().value) {
+
+    // }
 
     return [];
 }
