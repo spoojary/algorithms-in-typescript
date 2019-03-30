@@ -7,7 +7,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { BalancedBrackets } from "./expressionParser/balancedBrackets";
 import { InfixToPostFix } from "./expressionParser/infixToPostfix";
 import { SampleGraph } from "./graph/sampleGraph";
-import { AllPermutations } from "./string-manipulation/all-permutations";
+import { AllPermutations } from "./recursion-backtracking/all-permutations";
+import { StringCompress } from "./string-manipulation/string-compress";
+import { NinetyPercentRotate } from "./matrix/ninety-percent-rotate";
+import { PermOfNBraces } from "./recursion-backtracking/permutations-of-nbraces";
+import { MergeSortedArray } from "./sort/merge-sorted-arrays";
 
 export function Routes() {
     return (
@@ -19,6 +23,10 @@ export function Routes() {
                 <li><Link to="/infix-postfix">Infix to Postfix</Link></li>
                 <li><Link to="/sample-graph">Sample graph</Link></li>
                 <li><Link to="/all-permutations">string - all permutations</Link></li>
+                <li><Link to="/string-compress">String - compress</Link></li>
+                <li><Link to="ninety-percent-rotate">ninety-percent-rotate</Link></li>
+                <li><Link to="perm-of-n-braces">permutation of n braces</Link></li>
+                <li><Link to="merge-sorted-array">Merge sorted array</Link></li>
             </ul>
         </div>
         <Route path="/bst-sorter" component={BstSorter} />
@@ -26,6 +34,10 @@ export function Routes() {
         <Route path="/infix-postfix" component={InfixToPostFix} />
         <Route path="/sample-graph" component={SampleGraph} />
         <Route path="/all-permutations" component={AllPermutations} />
+        <Route path="/string-compress" component={StringCompress} />
+        <Route path="/ninety-percent-rotate" component={NinetyPercentRotate} />
+        <Route path="/perm-of-n-braces" component={PermOfNBraces} />
+        <Route path="/merge-sorted-array" component={MergeSortedArray} />
     </Router>
     );
 }
