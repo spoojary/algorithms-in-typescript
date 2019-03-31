@@ -12,11 +12,13 @@ import { StringCompress } from "./string-manipulation/string-compress";
 import { NinetyPercentRotate } from "./matrix/ninety-percent-rotate";
 import { PermOfNBraces } from "./recursion-backtracking/permutations-of-nbraces";
 import { MergeSortedArray } from "./sort/merge-sorted-arrays";
+import { Fibonacci } from "./algo/fibonacci";
+import { TextJustify } from "./algo/text-justify";
 
 export function Routes() {
     return (
     <Router>
-        <div>
+        <div style={{display: 'flex'}}>
             <ul>
                 <li><Link to="/bst-sorter">Binary Search Tree - Sort</Link></li>
                 <li><Link to="/balanced-brackets">Balanced Brackets</Link></li>
@@ -24,20 +26,25 @@ export function Routes() {
                 <li><Link to="/sample-graph">Sample graph</Link></li>
                 <li><Link to="/all-permutations">string - all permutations</Link></li>
                 <li><Link to="/string-compress">String - compress</Link></li>
-                <li><Link to="ninety-percent-rotate">ninety-percent-rotate</Link></li>
-                <li><Link to="perm-of-n-braces">permutation of n braces</Link></li>
-                <li><Link to="merge-sorted-array">Merge sorted array</Link></li>
+                <li><Link to="/ninety-percent-rotate">ninety-percent-rotate</Link></li>
+                <li><Link to="/perm-of-n-braces">permutation of n braces</Link></li>
+                <li><Link to="/fibonacci">fibonacci</Link></li>
+                <li><Link to="/text-justify">text-justify</Link></li>
             </ul>
+            <div>
+                <Route path="/bst-sorter" component={BstSorter} />
+                <Route path="/balanced-brackets" component={BalancedBrackets} />
+                <Route path="/infix-postfix" component={InfixToPostFix} />
+                <Route path="/sample-graph" component={SampleGraph} />
+                <Route path="/all-permutations" component={AllPermutations} />
+                <Route path="/string-compress" component={StringCompress} />
+                <Route path="/ninety-percent-rotate" component={NinetyPercentRotate} />
+                <Route path="/perm-of-n-braces" component={PermOfNBraces} />
+                <Route path="/merge-sorted-array" component={MergeSortedArray} />
+                <Route path="/fibonacci" component={Fibonacci} />
+                <Route path="/text-justify" component={TextJustify} />
+            </div>
         </div>
-        <Route path="/bst-sorter" component={BstSorter} />
-        <Route path="/balanced-brackets" component={BalancedBrackets} />
-        <Route path="/infix-postfix" component={InfixToPostFix} />
-        <Route path="/sample-graph" component={SampleGraph} />
-        <Route path="/all-permutations" component={AllPermutations} />
-        <Route path="/string-compress" component={StringCompress} />
-        <Route path="/ninety-percent-rotate" component={NinetyPercentRotate} />
-        <Route path="/perm-of-n-braces" component={PermOfNBraces} />
-        <Route path="/merge-sorted-array" component={MergeSortedArray} />
     </Router>
     );
 }
