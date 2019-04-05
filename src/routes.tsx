@@ -14,6 +14,7 @@ import { PermOfNBraces } from "./recursion-backtracking/permutations-of-nbraces"
 import { MergeSortedArray } from "./sort/merge-sorted-arrays";
 import { Fibonacci } from "./algo/fibonacci";
 import { TextJustify } from "./algo/text-justify";
+import { QuickSortArray } from "./sort/quick-sort";
 
 export function Routes() {
     return (
@@ -30,6 +31,7 @@ export function Routes() {
                 <li><Link to="/perm-of-n-braces">permutation of n braces</Link></li>
                 <li><Link to="/fibonacci">fibonacci</Link></li>
                 <li><Link to="/text-justify">text-justify</Link></li>
+                <li><Link to="/quick-sort">quick-sort</Link></li>
             </ul>
             <div>
                 <Route path="/bst-sorter" component={BstSorter} />
@@ -42,7 +44,7 @@ export function Routes() {
                 <Route path="/perm-of-n-braces" component={PermOfNBraces} />
                 <Route path="/merge-sorted-array" component={MergeSortedArray} />
                 <Route path="/fibonacci" component={Fibonacci} />
-                <Route path="/text-justify" component={TextJustify} />
+                <Route path="/quick-sort" component={QuickSortArray} />
             </div>
         </div>
     </Router>

@@ -1,11 +1,13 @@
-import { useState, ChangeEvent, memo, useMemo } from "react";
+import { useState, ChangeEvent, memo, useMemo, useEffect } from "react";
 import React  from "react";
 import { debounce } from "lodash";
 const lineWidth:number = 20;
 
 export function TextJustify() {
     const [paragraph, setParagraph] = useState("");
-  
+    //const [result, setResult] = useState<IJustifiedWithBadness>(null);
+    const result = textJustify(paragraph);//useMemo(() => textJustify(paragraph), [new Date().getSeconds().toString().substr(0,1)]);
+
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setParagraph(event.target.value);
     };
@@ -16,14 +18,31 @@ export function TextJustify() {
             <textarea cols={40} rows={5} value={paragraph} onChange={handleChange} /> 
             <h2>Justified string: </h2>
             <div style={{fontFamily: "monospace"}}>
-                {JSON.stringify(textJustify(paragraph))}
+                {JSON.stringify((result))}
+                {renderLines(result)}
             </div>
         </div>
     )
 }
 
+export function renderLines(line: IJustifiedWithBadness) {
+    if(line === null) return <span>NULL</span>;
+    return (
+    <>
+    <div>
+        {line.words.join(" ")}
+        {line.nextLine && renderLines(line.nextLine)}
+    </div>
+    </>
+    );
+}
+
+
+let cache = {};
+
 export function textJustify(text: string): IJustifiedWithBadness {
-    return justifyRemaining(text.split(' '));
+    cache = {};
+    return justifyRemaining(text.split(' '),0);
 }
 
 
@@ -34,25 +53,30 @@ interface IJustifiedWithBadness {
     memo?: string
 }
 
-const cache = {};
-
-function cacheAndReturn(line: IJustifiedWithBadness): IJustifiedWithBadness {
-    return cache[line.words.join(" ")] = line;
+function cacheAndReturn(start:number,line: IJustifiedWithBadness): IJustifiedWithBadness {
+    return cache[`${start}`] = line;
 }
 
-function justifyRemaining(words: string[]): IJustifiedWithBadness {
+function justifyRemaining(words: string[],start: number): IJustifiedWithBadness {
 
-    console.log("words ",words);
+    console.log('words',words.slice(start));
 
-    if(words.length === 0) {
-        return cacheAndReturn({
+    if(cache[`${start}`]) {
+        console.log('from cache')
+        return cache[`${start}`];
+    }
+
+    //console.log("words ",words);
+
+    if(start === words.length) {
+        return cacheAndReturn(start,{
             words: [],
             badness: 0
         });
     }
 
-    if(words.length === 1) {
-        return cacheAndReturn({
+    if(start === words.length-1) {
+        return cacheAndReturn(start,{
             words: words,
             badness: 0
         });
@@ -60,9 +84,10 @@ function justifyRemaining(words: string[]): IJustifiedWithBadness {
 
     let lineWithMinBadness: IJustifiedWithBadness = null;
 
-    for(let i=0;i<words.length;i++) {
+    for(let i=start;i<words.length;i++) {
 
-        const chosenWords = words.slice(null,i);
+        const chosenWords = words.slice(start,i+1);
+        console.log('chosen',chosenWords);
 
         let justifiedWords: IJustifiedWithBadness;
 
@@ -73,14 +98,12 @@ function justifyRemaining(words: string[]): IJustifiedWithBadness {
             };
 
         } else {
-            const remainingJustifiedWords =  justifyRemaining(words.slice(i+1));
-            console.log("remaing badness",getBadness(chosenWords, i === words.length-1), remainingJustifiedWords.badness);
+            const remainingJustifiedWords =  justifyRemaining(words,i+1);
     
             justifiedWords = {
                 words: chosenWords,
                 badness: getBadness(chosenWords, i === words.length-1) + remainingJustifiedWords.badness,
                 nextLine: remainingJustifiedWords,
-                memo: `${lineWidthWithWords(chosenWords)}-${getBadness(chosenWords, i === words.length-1)} ${remainingJustifiedWords.badness}`
             };    
         }
 
@@ -92,7 +115,7 @@ function justifyRemaining(words: string[]): IJustifiedWithBadness {
             break;
         } 
     }
-    return cacheAndReturn(lineWithMinBadness);
+    return cacheAndReturn(start,lineWithMinBadness);
 }
 
 function lineWidthWithWords(words: string[]) {
@@ -101,6 +124,6 @@ function lineWidthWithWords(words: string[]) {
 
 function getBadness(words: string[], isLastLine: boolean): number {
     if(isLastLine) return 0;
-    console.log('linewidth ', lineWidthWithWords(words));
+    //console.log('linewidth ', lineWidthWithWords(words));
     return Math.pow(lineWidth - (lineWidthWithWords(words)),2);
 }
