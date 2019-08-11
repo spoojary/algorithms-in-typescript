@@ -5,6 +5,7 @@ export function AllPermutations() {
 
     const [text, setText] = useState("");
     const results = generateAllPermutations(text);
+    //const results = generateAllPermutations1(text.split(''),0,[]);
 
     return (
         <>
@@ -37,3 +38,5 @@ export function permuteUtil(text: string, chosen: string): string[] {
 
     return permutations;
 }
+
+

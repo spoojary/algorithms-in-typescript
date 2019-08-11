@@ -1,10 +1,10 @@
-import { useState, ChangeEvent, memo, useMemo, useEffect } from "react";
+import { useState, ChangeEvent } from "react";
 import React  from "react";
-import { debounce } from "lodash";
 const lineWidth:number = 20;
 
 export function TextJustify() {
     const [paragraph, setParagraph] = useState("");
+    console.log('i am here in text justify');
     //const [result, setResult] = useState<IJustifiedWithBadness>(null);
     const result = textJustify(paragraph);//useMemo(() => textJustify(paragraph), [new Date().getSeconds().toString().substr(0,1)]);
 

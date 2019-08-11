@@ -56,8 +56,6 @@ export function quickSortUtil(array : number[], start: number, end: number) {
             swap(array, swapIndex, i);
             swapIndex++;
             //console.log(`swapindex incremented: ${swapIndex}`);
-        } else {
-            //console.log(`current i:${i} swap:${swapIndex}`, array);
         }
     }
 
@@ -75,20 +73,4 @@ function swap(array: number[], index1: number, index2: number): void {
     array[index1] = index2Value;
     array[index2] = index1Value;
     console.log(`swap indexes: ${index1}---${index2}`, array);
-}
-
-
-
-class LRU {
-
-    const cache = {};
-    const recentlyUsed: string = [];
-
-    public put(key: string, value: string):void {
-        this.cache[key] = value;
-    } 
-
-    public get(key: string): string {
-        return this.cache[key];
-    }
 }

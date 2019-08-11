@@ -1,4 +1,3 @@
-import { strict } from "assert";
 
 export class Vertex {
     private id: number;
