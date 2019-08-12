@@ -20,6 +20,8 @@
 //000
 //0000
 //0001
+
+//asked at google interview
 const increment = (text)  => {
     if(text.length === 0) return [""]; 
     const firstChar = text.substr(0,1);
