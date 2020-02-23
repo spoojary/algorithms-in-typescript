@@ -15,7 +15,7 @@ import { MergeSortedArray } from "./sort/merge-sorted-arrays";
 import { Fibonacci } from "./algo/fibonacci";
 import { TextJustify } from "./algo/text-justify";
 import { QuickSortArray } from "./sort/quick-sort";
-import { FindSetWithSum } from "./recursion-backtracking/find-set-with-sum";
+import { KmpSearch } from "./string-manipulation/kmp-search";
 
 export function Routes() {
     return (
@@ -34,6 +34,7 @@ export function Routes() {
                 <li><Link to="/text-justify">text-justify</Link></li>
                 <li><Link to="/quick-sort">quick-sort</Link></li>
                 <li><Link to="/find-subset-with-sum">find subset with sum</Link></li>
+                <li><Link to="/kmp-search">Kmp search</Link></li>
             </ul>
             <div>
                 <Route path="/bst-sorter" component={BstSorter} />
@@ -48,7 +49,7 @@ export function Routes() {
                 <Route path="/fibonacci" component={Fibonacci} />
                 <Route path="/quick-sort" component={QuickSortArray} />
                 <Route path="/text-justify" component={TextJustify}/>
-                <Route path="/find-subset-with-sum" component={FindSetWithSum} />
+                <Route path="/kmp-search" component={KmpSearch} />
             </div>
         </div>
     </Router>
