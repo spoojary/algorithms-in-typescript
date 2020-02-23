@@ -21,6 +21,7 @@
 //0000
 //0001
 
+
 //asked at google interview
 export const increment = (text)  => {
     if(text.length === 0) return [""]; 
