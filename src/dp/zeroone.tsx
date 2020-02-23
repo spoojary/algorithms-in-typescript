@@ -22,7 +22,7 @@
 //0001
 
 //asked at google interview
-const increment = (text)  => {
+export const increment = (text)  => {
     if(text.length === 0) return [""]; 
     const firstChar = text.substr(0,1);
     if(firstChar === '0') {
