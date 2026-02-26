@@ -14,7 +14,7 @@
     "react-graph-vis": "^1.0.2",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
+    "react-scripts": "5.0.1",
     "serve": "^10.1.2",
     "typescript": "^3.3.4000"
   },
